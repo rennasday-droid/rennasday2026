@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>Renna’s Day 2026</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --primary:#22c55e;
+      --primary2:#16a34a;
+      --accent:#f59e0b;
+      --bg1:#f0fdf4;
+      --bg2:#f8fafc;
+      --text:#0f172a;
+      --muted:#475569;
+
+      --card:rgba(255,255,255,.78);
+      --stroke:rgba(255,255,255,.45);
+      --shadow: 0 20px 60px rgba(2, 6, 23, .08);
+      --shadow2: 0 10px 30px rgba(34, 197, 94, .22);
+      --radius: 34px;
+
+      --ring: 0 0 0 6px rgba(34,197,94,.14);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Plus Jakarta Sans",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(34,197,94,.20), transparent 55%),
+        radial-gradient(1000px 500px at 110% 0%, rgba(245,158,11,.18), transparent 52%),
+        linear-gradient(135deg,var(--bg1),var(--bg2));
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    /* subtle animated background blobs */
+    .bg-orb{
+      position:fixed;
+      width:420px;height:420px;
+      filter: blur(45px);
+      opacity:.22;
+      z-index:-2;
+      border-radius:999px;
+      pointer-events:none;
+      background: radial-gradient(circle at 30% 30%, rgba(34,197,94,.9), rgba(34,197,94,0));
+      animation: floaty 10s ease-in-out infinite;
+    }
+    .bg-orb.orb2{
+      width:520px;height:520px;
+      right:-200px;top:120px;
+      background: radial-gradient(circle at 30% 30%, rgba(245,158,11,.9), rgba(245,158,11,0));
+      animation-duration: 12s;
+      opacity:.18;
+    }
+    .bg-orb.orb1{left:-220px;top:220px;}
+    @keyframes floaty{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,-18px) scale(1.04)}}
+
+    header{
+      position:relative;
+      padding:110px 18px 80px;
+      text-align:center;
+      color:#fff;
+      background:
+        radial-gradient(900px 400px at 30% 20%, rgba(255,255,255,.22), transparent 55%),
+        linear-gradient(135deg,var(--primary),var(--primary2));
+      border-bottom-left-radius:52px;
+      border-bottom-right-radius:52px;
+      box-shadow:var(--shadow2);
+      overflow:hidden;
+    }
+    header:after{
+      content:"";
+      position:absolute;
+      left:-20%; right:-20%;
+      bottom:-30px;
+      height:90px;
+      background: rgba(255,255,255,.14);
+      border-top-left-radius: 999px;
+      border-top-right-radius: 999px;
+      transform: rotate(-2.2deg);
+    }
+
+    .brand{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border:1px solid rgba(255,255,255,.22);
+      border-radius:999px;
+      background: rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 25px rgba(0,0,0,.10);
+      margin-bottom: 16px;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;
+      background: rgba(255,255,255,.85);
+      box-shadow: 0 0 0 6px rgba(255,255,255,.18);
+    }
+    header h1{
+      margin:0;
+      font-size: clamp(2.35rem, 4vw + 1rem, 3.6rem);
+      letter-spacing:-1.8px;
+      line-height:1.05;
+    }
+    header p{margin:12px 0 0;font-size:1.08rem;opacity:.92}
+
+    main{
+      max-width: 740px;
+      margin:-58px auto 0;
+      padding: 0 18px 36px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      padding: 34px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      margin: 0 0 26px;
+      transform: translateY(18px);
+      opacity: 0;
+      animation: in .75s ease-out forwards;
+    }
+    .card:nth-child(2){animation-delay:.06s}
+    .card:nth-child(3){animation-delay:.12s}
+    .card:nth-child(4){animation-delay:.18s}
+    .card:nth-child(5){animation-delay:.24s}
+    .card:nth-child(6){animation-delay:.30s}
+    @keyframes in{to{transform:translateY(0);opacity:1}}
+
+    .card h2{
+      margin: 0 0 12px;
+      font-size: 1.55rem;
+      color: var(--primary2);
+      letter-spacing:-.6px;
+    }
+    .lead{margin:0;color:var(--muted);font-size:1.02rem}
+
+    /* Countdown */
+    .countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+    .time{
+      position:relative;
+      background: rgba(255,255,255,.88);
+      border-radius: 22px;
+      padding: 18px 8px;
+      text-align:center;
+      border: 1px solid #eef2f7;
+      box-shadow: 0 10px 18px rgba(2,6,23,.05);
+      overflow:hidden;
+    }
+    .time:before{
+      content:"";
+      position:absolute;
+      inset:-40% -40% auto auto;
+      width:120px;height:120px;border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, rgba(34,197,94,.22), transparent 60%);
+      transform: rotate(25deg);
+    }
+    .time .num{
+      margin:0;
+      font-size:1.85rem;
+      color:var(--primary);
+      font-weight:800;
+      line-height:1;
+      display:block;
+      letter-spacing:-.7px;
+    }
+    .time span{
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      opacity:.65;
+      margin-top:6px;
+      display:block;
+    }
+
+    .chip{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:10px 14px;
+      border-radius:999px;
+      background: rgba(34,197,94,.10);
+      color: #065f46;
+      border: 1px solid rgba(34,197,94,.20);
+      font-weight: 800;
+      font-size: .95rem;
+      margin-top: 14px;
+    }
+    .spark{
+      width:10px;height:10px;border-radius:999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 7px rgba(245,158,11,.18);
+    }
+
+    /* Media */
+    img.media{
+      width:100%;
+      border-radius: 26px;
+      box-shadow: 0 12px 26px rgba(2,6,23,.10);
+      border: 1px solid rgba(255,255,255,.55);
+      display:block;
+      object-fit:cover;
+      max-height:420px;
+      background:#fff;
+    }
+
+    .video-stack{display:flex;flex-direction:column;gap:16px;margin-top:16px}
+    video{
+      width:100%;
+      display:block;
+      border-radius:26px;
+      box-shadow:0 12px 26px rgba(2,6,23,.10);
+      border: 1px solid rgba(255,255,255,.35);
+      background:#000;
+    }
+
+    .grid-gallery{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+    .grid-gallery img{
+      width:100%;
+      aspect-ratio:1/1;
+      object-fit:cover;
+      border-radius:22px;
+      box-shadow:0 10px 20px rgba(2,6,23,.10);
+      border:1px solid rgba(255,255,255,.55);
+      transition:transform .25s ease, box-shadow .25s ease;
+      cursor:zoom-in;
+    }
+    .grid-gallery img:hover{transform:translateY(-2px) scale(1.01);box-shadow:0 16px 30px rgba(2,6,23,.14)}
+
+    /* WHERE */
+    .where-grid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .where-box{
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(15,23,42,.08);
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: 0 10px 20px rgba(2,6,23,.06);
+    }
+    .where-title{
+      display:flex;
+      align-items:flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .pin{
+      width:38px;height:38px;border-radius:14px;
+      display:grid;place-items:center;
+      background: rgba(245,158,11,.16);
+      border: 1px solid rgba(245,158,11,.22);
+      flex: 0 0 auto;
+    }
+    .where-title strong{display:block;line-height:1.1}
+    .where-title small{display:block;color:rgba(15,23,42,.55);font-weight:800;margin-top:4px}
+    .kv{
+      margin-top: 10px;
+      display:grid;
+      gap: 8px;
+    }
+    .kv .rowkv{
+      display:flex;
+      gap: 10px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 16px;
+      background: rgba(15,23,42,.04);
+      border: 1px solid rgba(15,23,42,.06);
+      font-weight: 800;
+      color: rgba(15,23,42,.78);
+    }
+    .kv .rowkv span{color: rgba(15,23,42,.55);font-weight:900}
+    .map{
+      border-radius: 24px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.55);
+      box-shadow: 0 12px 26px rgba(2,6,23,.10);
+      background:#fff;
+      min-height: 250px;
+    }
+    .map iframe{width:100%;height:100%;border:0;display:block}
+
+    /* Form */
+    form{margin-top:16px}
+    label{display:block;font-weight:800;margin-bottom:8px;font-size:.95rem;color:#334155}
+    input,select,textarea{
+      width:100%;
+      padding:16px;
+      margin-bottom:14px;
+      border-radius:18px;
+      border:2px solid #e2e8f0;
+      background: rgba(248,250,252,.9);
+      font-family:inherit;
+      font-size:1rem;
+      transition:.22s ease;
+      outline:none;
+    }
+    input:focus,select:focus,textarea:focus{border-color: rgba(34,197,94,.9);background:#fff;box-shadow: var(--ring)}
+    .row{
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .row > div{flex:1;min-width: 150px}
+
+    .pillbox{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 6px 0 14px;
+    }
+    .pill{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      background: rgba(15,23,42,.04);
+      border: 1px solid rgba(15,23,42,.06);
+      font-weight: 900;
+      color: rgba(15,23,42,.78);
+      cursor:pointer;
+      user-select:none;
+      transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+    }
+    .pill input{accent-color: var(--primary); margin:0}
+    .pill:hover{transform:translateY(-1px);box-shadow:0 10px 20px rgba(2,6,23,.08);background:rgba(34,197,94,.06)}
+    .pill small{font-weight:900;opacity:.7}
+
+    .mamma-note{
+      background: rgba(245,158,11,.14);
+      border: 1px solid rgba(245,158,11,.22);
+      border-left: 6px solid var(--accent);
+      padding: 18px 18px;
+      border-radius: 18px;
+      margin: 6px 0 14px;
+      color: #7c2d12;
+      font-size: .96rem;
+      font-weight: 700;
+    }
+
+    .btn{
+      display:inline-flex;
+      width:100%;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:18px;
+      border-radius:26px;
+      font-weight:900;
+      letter-spacing:.2px;
+      text-decoration:none;
+      border:none;
+      font-size:1.06rem;
+      cursor:pointer;
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      user-select:none;
+    }
+    .btn-primary{
+      color:#fff;
+      background: linear-gradient(135deg, var(--primary), var(--primary2));
+      box-shadow: 0 14px 34px rgba(34,197,94,.32);
+    }
+    .btn-primary:hover{transform: translateY(-2px);filter: brightness(1.02);box-shadow:0 18px 42px rgba(34,197,94,.38)}
+    .btn-secondary{
+      margin-top: 12px;
+      background: rgba(15,23,42,.06);
+      color:#334155;
+      border: 1px solid rgba(15,23,42,.08);
+    }
+    .btn-secondary:hover{transform: translateY(-2px);box-shadow: 0 14px 34px rgba(2,6,23,.10)}
+
+    /* Toast */
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%) translateY(30px);
+      background: rgba(15,23,42,.92);
+      color:#fff;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-weight: 900;
+      opacity: 0;
+      pointer-events:none;
+      transition: .25s ease;
+      z-index: 50;
+      box-shadow: 0 18px 40px rgba(0,0,0,.22);
+      max-width: calc(100% - 28px);
+      text-align:center;
+    }
+    .toast.show{opacity:1; transform: translateX(-50%) translateY(0);}
+
+    /* Lightbox */
+    .lightbox{
+      position:fixed; inset:0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      background: rgba(2,6,23,.72);
+      z-index: 60;
+      padding: 18px;
+    }
+    .lightbox.open{display:flex}
+    .lightbox img{
+      max-width: min(920px, 96vw);
+      max-height: 86vh;
+      border-radius: 18px;
+      box-shadow: 0 22px 60px rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.35);
+    }
+
+    footer{padding:30px 18px 46px;text-align:center;color: rgba(15,23,42,.55);font-weight:900;font-size:.95rem}
+
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none !important;transition:none !important}
+      .bg-orb{display:none}
+    }
+    @media (max-width: 720px){
+      .where-grid{grid-template-columns: 1fr;}
+      .map{min-height: 280px}
+    }
+    @media (max-width: 520px){
+      .card{padding: 26px}
+      .countdown{gap:10px}
+      .time{padding:16px 6px}
+      .grid-gallery{gap:12px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+
+  <header>
+        <h1>Renna’s Day 2026</h1>
+    <p>🍃 Stesse radici, nuovi germogli 🍃</p>
+  </header>
+
+  <main>
+
+    <!-- Countdown -->
+    <section class="card" aria-label="Countdown">
+      <h2>📅 Il grande giorno</h2>
+      <p class="lead">Mancano ancora pochi mesi al <strong>12 Settembre 2026</strong>. Non vediamo l’ora!</p>
+      <div class="chip"><span class="spark"></span> Sab 12/09/2026 • ore <span id="eventTimeLabel">18:00</span></div>
+
+      <div class="countdown" role="group" aria-label="Conto alla rovescia">
+        <div class="time"><span class="num" id="days">0</span><span>Giorni</span></div>
+        <div class="time"><span class="num" id="hours">00</span><span>Ore</span></div>
+        <div class="time"><span class="num" id="minutes">00</span><span>Min</span></div>
+        <div class="time"><span class="num" id="seconds">00</span><span>Sec</span></div>
+      </div>
+    </section>
+
+    <!-- Origins -->
+    <section class="card" aria-label="Origini">
+      <h2>❤️ Le nostre origini</h2>
+      <p class="lead">Tutto è iniziato da loro. Oggi ci ritroviamo per condividere un momento speciale insieme.</p>
+      <img class="media" src="nonni.jpg" alt="I nonni Renna" loading="lazy">
+    </section>
+
+    <!-- WHERE -->
+    <section class="card" aria-label="Dove">
+      <h2>📍 Dove ci vediamo</h2>
+      <p class="lead">Ci incontriamo alla <strong>Chiesa S. Michele Arcangelo</strong>, a Malgesso. Tutto a portata di click.</p>
+
+      <div class="where-grid">
+        <!-- Left: details -->
+        <div class="where-box">
+          <div class="where-title">
+            <div class="pin">⛪</div>
+            <div>
+              <strong id="placeName">Chiesa S. Michele Arcangelo</strong>
+              <small id="placeAddress">Via Varese 5, Malgesso (VA)</small>
+            </div>
+          </div>
+
+          <div class="kv">
+            <div class="rowkv">
+              <span>🕒 Orario</span>
+              <div><strong id="placeTime">18:00</strong></div>
+            </div>
+            <div class="rowkv">
+              <span>🚗 Parcheggio</span>
+              <div><strong id="placeParking">Nei pressi</strong></div>
+            </div>
+                      </div>
+
+          <a id="mapsBtn" class="btn btn-primary" target="_blank" rel="noopener"
+             href="https://www.google.it/maps/place/Chiesa+S.+Michele+Arcangelo/@45.8285539,8.670413,17z/data=!3m1!4b1!4m6!3m5!1s0x478679b93ebc2acf:0x71ee08c54737306e!8m2!3d45.8285502!4d8.6729879!16s%2Fg%2F1tp8yxvs?entry=ttu&g_ep=EgoyMDI2MDIxMC4wIKXMDSoASAFQAw%3D%3D">
+            🧭 Apri su Google Maps
+          </a>
+
+          <a id="wazeBtn" class="btn btn-secondary" target="_blank" rel="noopener"
+             href="https://waze.com/ul?q=Chiesa%20S.%20Michele%20Arcangelo%2C%20Via%20Varese%205%2C%20Malgesso&navigate=yes">
+            🚘 Apri su Waze
+          </a>
+        </div>
+
+        <!-- Right: map -->
+        <div class="map" aria-label="Mappa">
+          <iframe
+            id="mapEmbed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Chiesa%20S.%20Michele%20Arcangelo%2C%20Via%20Varese%205%2C%20Malgesso&output=embed">
+          </iframe>
+        </div>
+      </div>
+
+      <div class="mamma-note" style="margin-top:14px">
+        <strong>💡 Tip:</strong> se arrivi da lontano o hai esigenze particolari, scrivilo nelle note: organizziamo tutto al meglio.
+      </div>
+    </section>
+
+    <!-- Videos with posters -->
+    <section class="card" aria-label="Video 2025">
+      <h2>🎥 Rivivi il 2025</h2>
+      <p class="lead">I sorrisi e i momenti più belli dell’anno scorso. Con anteprime “da cinema”.</p>
+
+      <div class="video-stack">
+        <video controls preload="metadata" playsinline poster="poster1.jpg">
+          <source src="video1.mp4" type="video/mp4">
+        </video>
+        <video controls preload="metadata" playsinline poster="poster2.jpg">
+          <source src="video2.mp4" type="video/mp4">
+        </video>
+        <video controls preload="metadata" playsinline poster="poster3.jpg">
+          <source src="video3.mp4" type="video/mp4">
+        </video>
+        <video controls preload="metadata" playsinline poster="poster4.jpg">
+          <source src="video4.mp4" type="video/mp4">
+        </video>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="card" aria-label="Foto 2025">
+      <h2>📸 Album Fotografico 2025</h2>
+      <p class="lead">Clicca una foto per ingrandire.</p>
+
+      <div class="grid-gallery" id="gallery">
+        <img src="2025-1.jpg" alt="Foto 1" loading="lazy">
+        <img src="2025-2.jpg" alt="Foto 2" loading="lazy">
+        <img src="2025-3.jpg" alt="Foto 3" loading="lazy">
+        <img src="2025-4.jpg" alt="Foto 4" loading="lazy">
+      </div>
+
+      <a href="https://drive.google.com/..." target="_blank" rel="noopener" class="btn btn-secondary">
+        Guarda tutte le foto su Drive
+      </a>
+    </section>
+
+    <!-- RSVP -->
+    <section class="card" aria-label="RSVP">
+      <h2>✅ Conferma la tua presenza</h2>
+      <p class="lead">Due minuti e ci aiuti tantissimo. Grazie! ❤️</p>
+
+      <form id="rsvpForm" action="https://formspree.io/f/xgolawqv" method="POST">
+        <label>Nome e Cognome della famiglia</label>
+        <input type="text" name="Famiglia" placeholder="es. Famiglia Rossi" required>
+
+        <div class="row">
+          <div>
+            <label>Parteciperete?</label>
+            <select name="Partecipazione" id="partecipazione" required>
+              <option value="SI">Sì, saremo presenti! 🎉</option>
+              <option value="NO">No, purtroppo non riusciamo 😔</option>
+            </select>
+          </div>
+
+          <div>
+            <label>📞 Telefono (opzionale)</label>
+            <input type="tel" name="Telefono" placeholder="es. 333 123 4567" inputmode="tel" autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label>N° Adulti</label>
+            <input type="number" name="Adulti" id="adulti" value="2" min="0">
+          </div>
+          <div>
+            <label>N° Bambini</label>
+            <input type="number" name="Bambini" id="bambini" value="0" min="0">
+          </div>
+        </div>
+
+        <label>✨ Ci dai una mano con qualcosa?</label>
+        <div class="pillbox">
+          <label class="pill"><input type="checkbox" name="Contributi[]" value="Dolce fatto in casa"> 🍰 <span>Porto un dolce</span> <small>(wow)</small></label>
+          <label class="pill"><input type="checkbox" name="Contributi[]" value="Vino/Bevande"> 🥂 <span>Porto bevande</span></label>
+          <label class="pill"><input type="checkbox" name="Contributi[]" value="Aiuto organizzazione"> 🤝 <span>Do una mano</span></label>
+        </div>
+
+        <label>Allergie, intolleranze o note</label>
+        <textarea name="Note" rows="3" placeholder="Es. senza glutine, vegetariano, arrivo più tardi..."></textarea>
+
+        <div class="mamma-note">
+          <strong>📌 Indicazioni della Zia Viviana:</strong><br>
+          Ricordatevi di confermare entro fine Agosto! Se volete portare dei dolci fatti in casa sono i benvenuti. 🥧
+        </div>
+
+        <input type="hidden" name="Evento" value="Renna's Day 2026 - 12/09/2026">
+        <input type="hidden" name="Location" value="Chiesa S. Michele Arcangelo - Via Varese 5, Malgesso (VA)">
+
+        <button type="submit" class="btn btn-primary" id="submitBtn">Invia Conferma ✅</button>
+        <button type="button" class="btn btn-secondary" id="addToCalendarBtn">📅 Aggiungi al calendario</button>
+      </form>
+    </section>
+
+    <footer>Renna’s Day 2026 ❤️ Una famiglia, un cuore solo.</footer>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <img id="lightboxImg" alt="Foto ingrandita">
+  </div>
+
+  <div class="toast" id="toast">Fatto ✅</div>
+
+  <script>
+    /* =========================
+       Countdown
+       ========================= */
+    const EVENT_ISO = "2026-09-12T18:00:00+02:00"; // cambia orario se serve
+    const eventDate = new Date(EVENT_ISO).getTime();
+
+    document.getElementById("eventTimeLabel").textContent =
+      new Date(EVENT_ISO).toLocaleTimeString("it-IT", { hour: "2-digit", minute: "2-digit" });
+
+    const $days = document.getElementById("days");
+    const $hours = document.getElementById("hours");
+    const $minutes = document.getElementById("minutes");
+    const $seconds = document.getElementById("seconds");
+
+    function pad2(n){ return String(n).padStart(2, "0"); }
+
+    function updateCountdown(){
+      const now = Date.now();
+      let distance = eventDate - now;
+
+      if (distance <= 0){
+        $days.textContent = "0";
+        $hours.textContent = "00";
+        $minutes.textContent = "00";
+        $seconds.textContent = "00";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000*60*60*24));
+      distance %= (1000*60*60*24);
+      const hours = Math.floor(distance / (1000*60*60));
+      distance %= (1000*60*60);
+      const minutes = Math.floor(distance / (1000*60));
+      const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+      $days.textContent = days;
+      $hours.textContent = pad2(hours);
+      $minutes.textContent = pad2(minutes);
+      $seconds.textContent = pad2(seconds);
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    /* =========================
+       Gallery lightbox
+       ========================= */
+    const gallery = document.getElementById("gallery");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+
+    gallery.addEventListener("click", (e) => {
+      const img = e.target.closest("img");
+      if (!img) return;
+      lightboxImg.src = img.src;
+      lightbox.classList.add("open");
+      lightbox.setAttribute("aria-hidden", "false");
+    });
+
+    function closeLightbox(){
+      lightbox.classList.remove("open");
+      lightbox.setAttribute("aria-hidden", "true");
+      lightboxImg.src = "";
+    }
+    lightbox.addEventListener("click", closeLightbox);
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLightbox(); });
+
+    /* =========================
+       RSVP UX + Toast
+       ========================= */
+    const partecipazione = document.getElementById("partecipazione");
+    const adulti = document.getElementById("adulti");
+    const bambini = document.getElementById("bambini");
+    const form = document.getElementById("rsvpForm");
+    const submitBtn = document.getElementById("submitBtn");
+
+    function syncCounts(){
+      const isNo = partecipazione.value === "NO";
+      adulti.disabled = isNo;
+      bambini.disabled = isNo;
+      if (isNo){ adulti.value = 0; bambini.value = 0; }
+      else { if (Number(adulti.value) === 0) adulti.value = 2; }
+    }
+    partecipazione.addEventListener("change", syncCounts);
+    syncCounts();
+
+    const toast = document.getElementById("toast");
+    let toastTimer = null;
+
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 2400);
+    }
+
+    form.addEventListener("submit", () => {
+      submitBtn.disabled = true;
+      submitBtn.style.filter = "grayscale(.15)";
+      showToast("Invio in corso… ✨");
+    });
+
+    /* =========================
+       Add to Calendar (ICS)
+       ========================= */
+    const addBtn = document.getElementById("addToCalendarBtn");
+
+    function toICSDate(d){
+      const yyyy = d.getUTCFullYear();
+      const mm = String(d.getUTCMonth()+1).padStart(2,"0");
+      const dd = String(d.getUTCDate()).padStart(2,"0");
+      const hh = String(d.getUTCHours()).padStart(2,"0");
+      const mi = String(d.getUTCMinutes()).padStart(2,"0");
+      const ss = String(d.getUTCSeconds()).padStart(2,"0");
+      return `${yyyy}${mm}${dd}T${hh}${mi}${ss}Z`;
+    }
+
+    addBtn.addEventListener("click", () => {
+      const start = new Date(EVENT_ISO);
+      const end = new Date(start.getTime() + 4*60*60*1000); // 4 ore
+
+      const locationText = "Chiesa S. Michele Arcangelo - Via Varese 5, Malgesso (VA)";
+
+      const ics =
+`BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Renna's Day//IT
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:${Date.now()}@rennasday
+DTSTAMP:${toICSDate(new Date())}
+DTSTART:${toICSDate(start)}
+DTEND:${toICSDate(end)}
+SUMMARY:Renna's Day 2026
+DESCRIPTION:Radici forti, rami felici.
+LOCATION:${locationText}
+END:VEVENT
+END:VCALENDAR`;
+
+      const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Renna-s-Day-2026.ics";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+
+      showToast("Aggiunto al calendario ✅");
+    });
+  </script>
+</body>
+</html>

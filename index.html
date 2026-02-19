@@ -9,16 +9,14 @@
   <meta name="theme-color" content="#7f00ff" />
   <meta name="color-scheme" content="light" />
 
-  <!-- Canonical + Social preview (SOSTITUISCI L'URL) -->
-  <link rel="canonical" href="https://github.com/rennasday-droid/rennasday2026"/>
+  <!-- Canonical + Social preview (SOSTITUISCI L'URL SE VUOI) -->
+  <link rel="canonical" href="https://TUO-USER.github.io/TUO-REPO/" />
 
   <meta property="og:title" content="Renna’s Day 2026" />
   <meta property="og:description" content="12 Settembre 2026 • ore 18:00 — Conferma presenza e mappa." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="it_IT" />
   <meta property="og:url" content="https://TUO-USER.github.io/TUO-REPO/" />
-
-  <!-- Preview immagine (consigliato 1200x630). Metti preview.jpg nel repo -->
   <meta property="og:image" content="https://TUO-USER.github.io/TUO-REPO/preview.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -202,11 +200,9 @@
       margin: 0 0 26px;
       position:relative;
       overflow:hidden;
-
       transform: translateY(18px);
       opacity: 0;
       will-change: transform, opacity;
-
       content-visibility:auto;
       contain-intrinsic-size: 1px 520px;
     }
@@ -327,12 +323,6 @@
       transition:transform .25s ease, box-shadow .25s ease, filter .25s ease;
       cursor:zoom-in;
     }
-    .grid-gallery img:hover{
-      transform:translateY(-2px) scale(1.01);
-      box-shadow:0 22px 46px rgba(10,0,35,.18);
-      filter:saturate(1.10) contrast(1.03);
-    }
-    .grid-gallery img:focus{outline:none;box-shadow: var(--focus);}
 
     .where-grid{
       display:grid;
@@ -467,58 +457,122 @@
     }
     .btn[disabled]{ opacity:.85; cursor:not-allowed; transform:none !important; }
 
+    /* STATS */
+    .statsBox{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:12px;
+      margin: 16px 0 6px;
+    }
+    .stat{
+      background: linear-gradient(135deg, rgba(255,255,255,.98), rgba(255,255,255,.88));
+      border-radius: 22px;
+      padding: 16px 12px;
+      text-align:center;
+      border: 1px solid rgba(var(--primary2-rgb), .18);
+      box-shadow: var(--shadowSoft);
+    }
+    .stat span{
+      display:block;
+      font-size: 1.65rem;
+      font-weight: 900;
+      color: var(--primary2);
+      line-height: 1;
+    }
+    .stat small{
+      display:block;
+      margin-top: 6px;
+      font-weight: 900;
+      color: #1f2aef;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      font-size: .72rem;
+    }
+
+    /* LISTE SÌ/NO */
+    .listPanel{
+      margin-top: 12px;
+      display:grid;
+      gap: 12px;
+      grid-template-columns: 1fr 1fr;
+    }
+    .listCol{
+      background: linear-gradient(135deg, rgba(255,255,255,.98), rgba(255,255,255,.88));
+      border-radius: 22px;
+      padding: 14px 14px;
+      border: 1px solid rgba(var(--primary2-rgb), .18);
+      box-shadow: var(--shadowSoft);
+      overflow:hidden;
+    }
+    .listTitle{
+      font-weight: 900;
+      color: var(--primary2);
+      margin: 0 0 8px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .nameList{
+      margin:0;
+      padding-left: 18px;
+      font-weight: 800;
+      color:#050a2a;
+    }
+    .nameList li{ margin: 6px 0; }
+
+    /* FIX DEFINITIVO: se hidden -> sparisce davvero (anche se display:grid) */
+    #listPanel[hidden]{ display:none !important; }
+
     /* Toast (icona grande sempre leggibile) */
     .toast{
-  position: fixed;
-  left: 50%;
-  bottom: max(18px, env(safe-area-inset-bottom));
-  transform: translateX(-50%) translateY(30px);
+      position: fixed;
+      left: 50%;
+      bottom: max(18px, env(safe-area-inset-bottom));
+      transform: translateX(-50%) translateY(30px);
 
-  background: linear-gradient(135deg,
-    rgba(5,10,42,.94),
-    rgba(127,0,255,.78),
-    rgba(255,45,149,.68)
-  );
-  color:#fff;
+      background: linear-gradient(135deg,
+        rgba(5,10,42,.94),
+        rgba(127,0,255,.78),
+        rgba(255,45,149,.68)
+      );
+      color:#fff;
 
-  padding: 14px 16px;
-  border-radius: 16px;
-  font-weight: 900;
-  font-size: 1.02rem;
+      padding: 14px 16px;
+      border-radius: 16px;
+      font-weight: 900;
+      font-size: 1.02rem;
 
-  opacity: 0;
-  pointer-events: none;
-  transition: .25s ease;
-  z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: .25s ease;
+      z-index: 9999;
 
-  box-shadow: 0 18px 44px rgba(0,0,0,.26);
-  border: 1px solid rgba(255,255,255,.22);
-  text-shadow: 0 2px 10px rgba(0,0,0,.35);
+      box-shadow: 0 18px 44px rgba(0,0,0,.26);
+      border: 1px solid rgba(255,255,255,.22);
+      text-shadow: 0 2px 10px rgba(0,0,0,.35);
 
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
+      display:flex;
+      align-items:center;
+      gap:10px;
 
-.toast.show{
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-.toast-ico{
-  width:32px; height:32px;
-  border-radius:14px;
-  display:grid; place-items:center;
-  background: rgba(255,255,255,.18);
-  border: 1px solid rgba(255,255,255,.22);
-  box-shadow: 0 10px 22px rgba(0,0,0,.18);
-  font-size: 19px;
-  line-height: 1;
-  flex: 0 0 auto;
-}
-
-.toast-txt{ display:block; }
-
+      max-width: calc(100% - 22px);
+    }
+    .toast.show{
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .toast-ico{
+      width:32px; height:32px;
+      border-radius:14px;
+      display:grid; place-items:center;
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.22);
+      box-shadow: 0 10px 22px rgba(0,0,0,.18);
+      font-size: 19px;
+      line-height: 1;
+      flex: 0 0 auto;
+    }
+    .toast-txt{ display:block; }
 
     /* Lightbox */
     .lightbox{
@@ -580,6 +634,7 @@
     @media (max-width: 720px){
       .where-grid{grid-template-columns: 1fr;}
       .map{min-height: 280px}
+      .listPanel{ grid-template-columns: 1fr; }
     }
     @media (max-width: 520px){
       .card{padding: 26px}
@@ -604,6 +659,7 @@
 
   <main id="contenuto">
 
+    <!-- Countdown -->
     <section class="card" aria-label="Countdown">
       <h2>📅 Il grande giorno</h2>
       <p class="lead">Mancano ancora pochi mesi al <strong>12 Settembre 2026</strong>. Non vediamo l’ora!</p>
@@ -617,12 +673,14 @@
       </div>
     </section>
 
+    <!-- Origins -->
     <section class="card" aria-label="Origini">
       <h2>❤️ Le nostre origini</h2>
       <p class="lead">Tutto è iniziato da loro. Oggi ci ritroviamo per condividere un momento speciale insieme.</p>
       <img class="media" src="nonni.jpg" alt="I nonni Renna" loading="lazy" decoding="async">
     </section>
 
+    <!-- WHERE -->
     <section class="card" aria-label="Dove">
       <h2>📍 Dove ci vediamo</h2>
       <p class="lead">Ci incontriamo alla <strong>Chiesa S. Michele Arcangelo</strong>, a Malgesso. Tutto a portata di click.</p>
@@ -665,9 +723,10 @@
       </div>
     </section>
 
+    <!-- Videos -->
     <section class="card" aria-label="Video 2025">
       <h2>🎥 Rivivi il 2025</h2>
-      <p class="lead">I sorrisi e i momenti più belli dell’anno scorso. Con anteprime “da cinema”.</p>
+      <p class="lead">I sorrisi e i momenti più belli dell’anno scorso.</p>
 
       <div class="video-stack">
         <video controls preload="metadata" playsinline poster="poster1.jpg"><source src="video1.mp4" type="video/mp4"></video>
@@ -677,6 +736,7 @@
       </div>
     </section>
 
+    <!-- Gallery -->
     <section class="card" aria-label="Foto 2025">
       <h2>📸 Album Fotografico 2025</h2>
       <p class="lead">Clicca una foto per ingrandire.</p>
@@ -694,9 +754,47 @@
       </a>
     </section>
 
+    <!-- RSVP -->
     <section class="card" aria-label="RSVP">
       <h2>✅ Conferma la tua presenza</h2>
       <p class="lead">Due minuti e ci aiuti tantissimo. Grazie! ❤️</p>
+
+      <!-- Statistiche -->
+      <div class="statsBox" aria-label="Riepilogo conferme">
+        <div class="stat">
+          <span id="statYesPeople">—</span>
+          <small>Persone • Sì</small>
+        </div>
+        <div class="stat">
+          <span id="statNoPeople">—</span>
+          <small>Persone • No</small>
+        </div>
+        <div class="stat">
+          <span id="statYesFamilies">—</span>
+          <small>Famiglie • Sì</small>
+        </div>
+        <div class="stat">
+          <span id="statNoFamilies">—</span>
+          <small>Famiglie • No</small>
+        </div>
+      </div>
+
+      <!-- Pulsante elenco -->
+      <button type="button" class="btn btn-secondary" id="toggleListBtn" aria-expanded="false">
+        👀 Mostra elenco
+      </button>
+
+      <!-- Elenchi (nascosti di default) -->
+      <div class="listPanel" id="listPanel" hidden>
+        <div class="listCol">
+          <p class="listTitle">✅ Confermati (Sì)</p>
+          <ol class="nameList" id="yesList"></ol>
+        </div>
+        <div class="listCol">
+          <p class="listTitle">😔 Non presenti (No)</p>
+          <ol class="nameList" id="noList"></ol>
+        </div>
+      </div>
 
       <noscript>
         <div class="mamma-note"><strong>⚠️</strong> Per inviare la conferma serve JavaScript attivo.</div>
@@ -707,6 +805,7 @@
             method="POST"
             target="hidden_iframe">
 
+        <!-- Honeypot anti-spam -->
         <div style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
           <label>Se vedi questo campo, lascialo vuoto</label>
           <input type="text" name="website" tabindex="-1" autocomplete="off">
@@ -773,9 +872,9 @@
 
   <!-- Toast -->
   <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">
-  <span class="toast-ico" id="toastIco" aria-hidden="true">✅</span>
-  <span class="toast-txt" id="toastTxt">Fatto</span>
-</div>
+    <span class="toast-ico" id="toastIco" aria-hidden="true">✅</span>
+    <span class="toast-txt" id="toastTxt">Fatto</span>
+  </div>
 
   <!-- IFRAME nascosto per Apps Script -->
   <iframe id="hidden_iframe" name="hidden_iframe" style="display:none;"></iframe>
@@ -784,7 +883,9 @@
     "use strict";
 
     const $ = (id) => document.getElementById(id);
+
     function pad2(n){ return String(n).padStart(2, "0"); }
+
     function icsEscape(str){
       return String(str)
         .replace(/\\/g, "\\\\")
@@ -859,7 +960,7 @@
       if (!updateCountdown()) clearInterval(countdownTimer);
     }, 1000);
 
-    /* Gallery Lightbox + focus */
+    /* Gallery Lightbox */
     const gallery = $("gallery");
     const lightbox = $("lightbox");
     const lightboxImg = $("lightboxImg");
@@ -871,7 +972,6 @@
       lastFocus = document.activeElement;
       prevBodyOverflow = document.body.style.overflow || "";
       document.body.style.overflow = "hidden";
-
       lightboxImg.src = src;
       lightboxImg.alt = alt || "Foto ingrandita";
       lightbox.classList.add("open");
@@ -883,43 +983,29 @@
       lightbox.setAttribute("aria-hidden", "true");
       lightboxImg.src = "";
       document.body.style.overflow = prevBodyOverflow;
-
       if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
     }
 
-    gallery.addEventListener("click", (e) => {
-      const img = e.target.closest("img");
-      if (!img) return;
-      openLightbox(img.src, img.alt);
-    });
-    gallery.addEventListener("keydown", (e) => {
-      const img = e.target.closest("img");
-      if (!img) return;
-      if (e.key === "Enter" || e.key === " "){
-        e.preventDefault();
+    if (gallery){
+      gallery.addEventListener("click", (e) => {
+        const img = e.target.closest("img");
+        if (!img) return;
         openLightbox(img.src, img.alt);
-      }
-    });
-
+      });
+      gallery.addEventListener("keydown", (e) => {
+        const img = e.target.closest("img");
+        if (!img) return;
+        if (e.key === "Enter" || e.key === " "){
+          e.preventDefault();
+          openLightbox(img.src, img.alt);
+        }
+      });
+    }
     lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
     closeBtn.addEventListener("click", closeLightbox);
     document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLightbox(); });
 
-    function trapFocus(e){
-      if (!lightbox.classList.contains("open")) return;
-      if (e.key !== "Tab") return;
-      const focusables = [closeBtn];
-      const first = focusables[0];
-      const last = focusables[focusables.length - 1];
-      if (e.shiftKey && document.activeElement === first){
-        e.preventDefault(); last.focus();
-      } else if (!e.shiftKey && document.activeElement === last){
-        e.preventDefault(); first.focus();
-      }
-    }
-    document.addEventListener("keydown", trapFocus);
-
-    /* Toast (icona grande) */
+    /* Toast */
     const toast = $("toast");
     const toastIco = $("toastIco");
     const toastTxt = $("toastTxt");
@@ -930,18 +1016,102 @@
       toastIco.textContent =
         kind === "loading" ? "⏳" :
         kind === "success" ? "✅" :
-        "ℹ️";
+        kind === "info" ? "ℹ️" :
+        "⚠️";
 
       toast.classList.add("show");
       clearTimeout(toastTimer);
       toastTimer = setTimeout(() => toast.classList.remove("show"), 2600);
     }
 
-    /* RSVP UX + submit via hidden iframe */
+    /* RSVP + STATS */
+    const form = $("rsvpForm");
+    const SCRIPT_URL = form.getAttribute("action");
+
+    const statYesPeople = $("statYesPeople");
+    const statNoPeople  = $("statNoPeople");
+    const statYesFamilies = $("statYesFamilies");
+    const statNoFamilies  = $("statNoFamilies");
+
+    const yesListEl = $("yesList");
+    const noListEl  = $("noList");
+
+    function renderList(el, arr){
+      el.innerHTML = "";
+      const list = Array.isArray(arr) ? arr : [];
+      if (list.length === 0){
+        const li = document.createElement("li");
+        li.textContent = "—";
+        el.appendChild(li);
+        return;
+      }
+      list.forEach((name) => {
+        const li = document.createElement("li");
+        li.textContent = String(name);
+        el.appendChild(li);
+      });
+    }
+
+    function refreshStats(){
+      const cb = "cbStats_" + Date.now();
+      const script = document.createElement("script");
+
+      window[cb] = (data) => {
+        // Conteggi
+        statYesPeople.textContent = data?.yesPeople ?? 0;
+        statNoPeople.textContent = data?.noPeople ?? 0;
+        statYesFamilies.textContent = data?.yesFamilies ?? 0;
+        statNoFamilies.textContent = data?.noFamilies ?? 0;
+
+        // Liste (solo se pannello aperto, così non “stressiamo”)
+        const listPanel = $("listPanel");
+        if (listPanel && !listPanel.hasAttribute("hidden")){
+          renderList(yesListEl, data?.yesList || []);
+          renderList(noListEl,  data?.noList  || []);
+        }
+
+        delete window[cb];
+        script.remove();
+      };
+
+      script.src = `${SCRIPT_URL}?stats=1&callback=${cb}&_=${Date.now()}`;
+      script.onerror = () => {
+        delete window[cb];
+        script.remove();
+      };
+      document.body.appendChild(script);
+    }
+
+    // prima lettura + refresh periodico
+    refreshStats();
+    setInterval(refreshStats, 30000);
+
+    /* Toggle elenco */
+    const toggleListBtn = $("toggleListBtn");
+    const listPanel = $("listPanel");
+
+    toggleListBtn.addEventListener("click", () => {
+      const isHidden = listPanel.hasAttribute("hidden");
+
+      if (isHidden){
+        listPanel.removeAttribute("hidden");
+        toggleListBtn.textContent = "🙈 Nascondi elenco";
+        toggleListBtn.setAttribute("aria-expanded", "true");
+        // aggiorna subito e riempi le liste
+        refreshStats();
+        // un micro-delay per essere sicuri che i dati arrivino anche se era appena stato richiesto
+        setTimeout(refreshStats, 250);
+      } else {
+        listPanel.setAttribute("hidden", "");
+        toggleListBtn.textContent = "👀 Mostra elenco";
+        toggleListBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    /* RSVP UX */
     const partecipazione = $("partecipazione");
     const adulti = $("adulti");
     const bambini = $("bambini");
-    const form = $("rsvpForm");
     const submitBtn = $("submitBtn");
     const submitBtnOriginal = submitBtn.textContent;
 
@@ -977,6 +1147,10 @@
       submitBtn.textContent = submitBtnOriginal;
       submitBtn.disabled = false;
       submitBtn.removeAttribute("aria-busy");
+
+      // aggiorna conteggi (e liste se aperte)
+      refreshStats();
+      setTimeout(refreshStats, 400);
     });
 
     form.addEventListener("submit", (e) => {
@@ -996,15 +1170,17 @@
       pendingSubmit = true;
       form.submit();
 
+      // fallback: se l'iframe non “rientra” (rare), sblocchiamo dopo tot
       setTimeout(() => {
         if (pendingSubmit) {
           pendingSubmit = false;
-          showToast("Inviato (controllo in corso)", "success");
+          showToast("Inviato ✅", "success");
           submitBtn.textContent = submitBtnOriginal;
           submitBtn.disabled = false;
           submitBtn.removeAttribute("aria-busy");
+          refreshStats();
         }
-      }, 4500);
+      }, 5500);
     });
 
     /* Add to Calendar (ICS) */
@@ -1069,4 +1245,3 @@ END:VCALENDAR`;
   </script>
 </body>
 </html>
-"v2"
